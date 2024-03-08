@@ -1,9 +1,8 @@
 # EXPERIMENT-NO--04-Distance measurement using Ultrasonic sensor
- ###  DATE: 
-
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT:
+ ###  DATE: 08-03-2024
+###  NAME: HEMADHARSHINI M
+###  ROLL NO : 212222040053
+###  DEPARTMENT: BE CSE
 ## AIM: 
 To interface an ultrasonic pair and measure the distance in centimeters , calculate the error
  
@@ -43,6 +42,22 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ![image](https://user-images.githubusercontent.com/36288975/166430594-5adb4ca9-5a42-4781-a7e6-7236b3766a85.png)
 
+### FIGURE 02 DISTANCE<50
+
+![red](https://github.com/HemadharshiniMurugan/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/119404809/bcf7d623-eee6-41d7-99f8-d7e71585b352)
+
+### FIGURE 03 DISTANCE>50
+
+![green](https://github.com/HemadharshiniMurugan/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/119404809/946dd86c-ae5e-4114-b837-5e7969ab5ed7)
+
+### SCHEMATIC DIAGRAM
+
+![green](https://github.com/HemadharshiniMurugan/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/119404809/7c058f31-22f2-468a-b841-cccd9f21b82f)
+
+
+
+
+
 
 
 ### PROCEDURE:
@@ -60,46 +75,73 @@ speed of sound in the air at 20ºC (68ºF) = 343m/s
 
 ### PROGRAM 
 ```
+int echopin=6;
+  int trigpin=7;
+  int red=8;
+  int green=9;long duration;
+  float distance;
+void setup()
+{
+   pinMode(echopin,INPUT);
+   pinMode(trigpin,OUTPUT);
+   pinMode(red,OUTPUT);
+   pinMode(green,OUTPUT);
+   Serial.begin(9600);
+}
 
+void loop()
+{
+  digitalWrite(trigpin, LOW);
+  delay(10); // Wait for 1000 millisecond(s)
+   digitalWrite(trigpin, HIGH);
+  delay(10); // Wait for 1000 millisecond(s)
+   digitalWrite(trigpin, LOW);
+  duration=pulseIn(echopin,HIGH);
+  distance=duration*0.034/2;
+  Serial.print("distance=");
+  Serial.print(distance);
+  Serial.println("cms");
+    if (distance>50)
+  {
+     digitalWrite(green, HIGH);
+  delay(500);
+     digitalWrite(green, LOW);
+  delay(500);
+  }
+  else
+  {
+    digitalWrite(red, HIGH);
+  delay(500);
+     digitalWrite(red, LOW);
+  delay(500);
+  }
+    
+}
 
-
-
-
-
-
-
-
-
-`````````
+```
 
 
 ### Distance vs measurement table 
 
-			
- 
-			
-			
-			
+![ONE](https://github.com/HemadharshiniMurugan/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/119404809/620fe3ad-c139-43fa-8174-a5aa135fb435)
 
-![image](https://user-images.githubusercontent.com/36288975/190135379-52ebacd5-ccd5-460f-a4cd-4d0ad1d9b179.png)
+![TWO](https://github.com/HemadharshiniMurugan/Experiment--04-Interfacing-digital-output-with-arduino-ultrasonic-sensor/assets/119404809/3e09a165-0a9c-40f2-8cb3-da25d2371b5c)
+
 
 			
 			
 			
 			
 			
-			Average error = sum/ number of readings 
+			Average error = 0.302
  
 
 
 
 
 
+### RESULT
 
-
-
-### RESULTS
-
-
+Thus,the distance value is measured in "CM" using ultrasonic sensor
 
  
